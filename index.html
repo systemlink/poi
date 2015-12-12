@@ -292,7 +292,6 @@ $(document).ready(function(){
 	 *  タップした位置をメモリーする
 	 */
 	 function TouchStart( event ) {
-		$("#event").html('タップしました');
 		var pos = Position(event);
 		$("#touch").data("memory",pos.x);
 	 }
@@ -302,23 +301,17 @@ $(document).ready(function(){
 	 * タップした位置からプラスかマイナスかで左右移動を判断
 	 */
 	function TouchMove( event ) {
-		var pos = Position(event); //X,Yを得る
-	 
-		if( pos.x < $("#touch").data("memory") + 50 ){
-			$("#event").html('左に移動');
-		}else{
-			$("#event").html('右に移動');
-			$("#next").click();
-		}
-	 
-		$("#leave").html('移動距離 X='+pos.x+' , Y='+pos.y);
 	}
 	 
 	/*
 	* 指を離す
 	*/
 	function TouchLeave( event ) {
-		$("#event").html('指を離しました');
+		var pos = Position(event); //X,Yを得る
+		if( pos.x < $("#touch").data("memory") + 50 ){
+		}else{
+			$("#next").click();
+		}
 	}
 	 
 	/*
