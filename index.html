@@ -280,7 +280,6 @@ $(document).ready(function(){
 		alert("もう行くとこなんてねえよ");
 	    }
 	});
-
 /**
 	* タップ、スワイプ、指を離した時のイベントハンドラ
 	*/
@@ -293,7 +292,7 @@ $(document).ready(function(){
 	 */
 	 function TouchStart( event ) {
 		var pos = Position(event);
-		$("#touch").data("memory",pos.x);
+		start_pox_x = pos.x
 	 }
  
 	/**
@@ -308,12 +307,12 @@ $(document).ready(function(){
 	*/
 	function TouchLeave( event ) {
 		var pos = Position(event); //X,Yを得る
-		if( pos.x < $("#touch").data("memory") + 50 ){
+			if( pos.x >= start_pox_x + 50 ){
 		}else{
 			$("#next").click();
 		}
 	}
-	 
+	
 	/*
 	* 現在位置を得る
 	*/
@@ -326,6 +325,8 @@ $(document).ready(function(){
 		return pos;
 	}
 });
+
+var start_pox_x;
 
 function poi(test){ 
   $("#title").text(test.title);
