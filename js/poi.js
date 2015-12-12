@@ -220,7 +220,7 @@ $(document).ready(function(){
 	* 指を離す
 	*/
 	function TouchLeave( event ) {
-		if( start_pox_x + 50 <= end_pox_x ){
+		if( start_pox_x - 50 > end_pox_x ){
 			$("#next").click();
 		}
 	}
