@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Poi</title>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/poi.css">
+  <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="container">
+  <div class="bs-docs-section">
+    <div class="row">
+      <div class="col-lg-4">
+	      <div class="bs-component">
+		      <div class="panel panel-default" id="view">
+		        <div class="panel-heading">
+              <ul class="pager pull-right" style="padding:left:5px">
+                <li class="next">
+                  <a href="#" id="next">Next</a>
+                </li>
+              </ul>
+			        <h1 id="title"></h1>
+		        </div>
+		        <div class="panel-body" >
+              <div id="images"></div>
+                <script id="image_template" type="text/template">
+      			      <img id="image"
+                    src="<%= url %>"
+                    class="img-rounded pull-left img-responsive"
+                    style='padding:0;margin:0 15px 15px 0;'
+                    alt="Cinque Terre"
+                    width="300px"
+                    height="300px"/>
+               </script>
+              <div id="info"></div>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+          <div id="mapField" style="width: 300px; height:300px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <a class="btn" href="img/QR.gif" ><span class="glyphicon glyphicon-qrcode"></span></a><h6 style="display:inline">Copyright © 2015 SystemLink All Rights Reserved.</h6>
+  </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/soundjs-0.6.2.min.js"></script>
+<script type="text/javascript" src="js/poi.js"></script>
+</body>
+</html>
