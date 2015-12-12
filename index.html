@@ -101,9 +101,11 @@
     </div -->
     <div class="row">
 	<div class="col-lg-4">
-
-	    <div class="bs-component">
-
+	  <div class="bs-component">
+	  <div id="touch" data-memory=''></div>
+	  <div id="event" data-memory=''></div>
+	  <div id="leave" data-memory=''></div>
+	  
 		<div class="panel panel-default">
 		    <div class="panel-heading">
 			<h1 id="title"></h1>
@@ -304,6 +306,51 @@ $(document).ready(function(){
 		alert("もう行くとこなんてねえよ");
 	    }
 	});
+
+/**
+	* タップ、スワイプ、指を離した時のイベントハンドラ
+	*/
+	$("#container").bind("touchstart", TouchStart);
+	$("#container").bind("touchmove" , TouchMove);
+	$("#container").bind("touchend" , TouchLeave);
+ 
+	/**
+	 *  タップした位置をメモリーする
+	 */
+	 function TouchStart( event ) {
+		var pos = Position(event);
+		$("#touch").data("memory",pos.x);
+	 }
+ 
+	/**
+	 * スワイプ
+	 * タップした位置からプラスかマイナスかで左右移動を判断
+	 */
+	function TouchMove( event ) {
+	}
+	 
+	/*
+	* 指を離す
+	*/
+	function TouchLeave( event ) {
+		var pos = Position(event); //X,Yを得る
+		if( pos.x < $("#touch").data("memory") + 50 ){
+		}else{
+			$("#next").click();
+		}
+	}
+	 
+	/*
+	* 現在位置を得る
+	*/
+	function Position(e){
+		var x = e.originalEvent.touches[0].pageX;
+		var y = e.originalEvent.touches[0].pageY;
+		x = Math.floor(x);
+		y = Math.floor(y);
+		var pos = {'x':x , 'y':y};
+		return pos;
+	}
 });
 
 function poi(test){
@@ -338,19 +385,6 @@ function poi(test){
   //マーカー追加
   var marker = new google.maps.Marker(markerOption);
 };
-
-$('#container').bind({
-/* フリック開始時 */
-'touchstart': function(e) {
-},
-/* フリック中 */
-'touchmove': function(e) {
-},
-/* フリック終了 */
-'touchend': function(e) {
-	$("#next").click()
-}
-});
 </script>
 
 </body>
