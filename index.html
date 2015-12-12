@@ -114,12 +114,16 @@
 			</ul>
 		    </div>
 		    <div class="panel-body">
-			<img id="image" 
-			    class="img-rounded pull-left img-responsive" 
-			    style='padding:0;margin:0 15px 15px 0;' 
-			    alt="Cinque Terre" 
-			    width="300px" 
+          <div id="images"></div>
+      <script id="image_template" type="text/template">
+			<img id="image"
+          src="<%= url %>"
+			    class="img-rounded pull-left img-responsive"
+			    style='padding:0;margin:0 15px 15px 0;'
+			    alt="Cinque Terre"
+			    width="300px"
 			    height="300px"/>
+      </script>
 			<div id="info"></div>
 		    </div>
 		    <div class="panel-footer">
@@ -143,6 +147,9 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 <!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script -->
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="js/underscore-min.js">
+
+</script>
 
 <script>
 $(document).ready(function(){
@@ -154,111 +161,130 @@ $(document).ready(function(){
 
 	*/
 	datas = [
-	    {
-		"title":"松江城",
-		"info":"城下町松江のシンボルとして親しまれている松江城です。",
-		"image":"http://www.kankou-matsue.jp/kankou/kankoushisetu/matsuejyou.data/matsuejyo.jpg",
-		"latitude":"35.475067",
-		    "longitude":"133.050724",
-		    "rank":1
-	    },
-	    {
-		"title":"堀川遊覧船",
-		"info":"松江城を取り囲む堀川を観光できる遊覧船です。冬はこたつ船になります。",
-		"image":"http://www.kankou-matsue.jp/kankou/norimono/horikawa-meguri.data/horikawa-meguri__001.jpg",
-		"latitude":"35.478266",
-		"longitude":"133.046035", 
-		"rank":2
-	    },
-	    {
-		"title":"松江のゼロ磁場",
-		"info":"N極とS極の磁気がお互いに打ち消しあった場所です。パワースポットです。日本に数カ所しかありません！！",
-		"image":"http://www.hotel-nagata.co.jp/wp/wp-content/uploads/2010/11/rie-001.jpg",
-		"latitude":"35.469847",
-		"longitude":"133.037351", 
-		"rank":3
-	    },
-	    {
-		"title":"マクドナルド　松江店",
-		"info":"ハンバーガー屋さんです。松江にもあります。ちなみに安来店は閉店しました。",
-		"image":"http://image1-3.tabelog.k-img.com/restaurant/images/Rvw/35763/640x640_rect_35763301.jpg",
-		"latitude":"35.473171",
-		"longitude":"133.065053", 
-		"rank":4
-	    },
-	    {
-		"title":"ローソン　浜乃木店",
-		"info":"松江でも超有名なお店です。有名な理由はご想像にお任せします。",
-		"image":"http://prtimes.jp/i/2380/6/resize/14407584f6b305257d7977db7a4909ef.jpg",
-		"latitude":"35.444381",
-		"longitude":"133.058336", 
-		"rank":5
-	    },
-	    {
-		"title":"株式会社　システムリンク",
-		"info":"なんでもできる会社です。（一部、ご期待に添えない場合があります。）",
-		"image":"http://livedoor.blogimg.jp/g2009h/imgs/9/f/9f26b0e8.jpg",
-		"latitude":"35.444720",
-		"longitude":"133.058147", 
-		"rank":6
-	    },
-	    {
-		"title":"植田正治写真美術館",
-		"info":"松江ではありませんが福山雅治氏　師匠（写真家）の美術館です",
-		"image":"http://3.bp.blogspot.com/_JHKqfsEPLyg/TIHYKcESi4I/AAAAAAAAAV8/1e8D2DV0toc/s1600/R0019281.JPG",
-		"latitude":"35.389886",
-		"longitude":"133.435751", 
-		"rank":7
-	    },
-	    {
-		"title":"べたぶみ坂",
-		"info":"一部、松江の江島大橋です。（一部は、境港市）テレビ　CMで有名になりました。",
-		"image":"http://blog.zige.jp/resources/member/001/647/1349767/large/zpRt6OYS.jpg",
-		"latitude":"35.519092",
-		"longitude":"133.199813", 
-		"rank":8
-	    },
-	    {
-		"title":"スターバックス　シャミネ松江店",
-		"info":"ニュースで話題になりました。現在は、落ち着いております。",
-		"image":"http://kentasaka.hungry.jp/star/wp-content/uploads/2015/04/14294290458060.jpg",
-		"latitude":"35.464066",
-		"longitude":"133.064243", 
-		"rank":9
-	    },
-	    {
-		"title":"片側二車線道路",
-		"info":"松江にもあります。片側二車線道路！！",
-		"image":"http://www.cgr.mlit.go.jp/matsukoku/kanri_cctv/cam_image/08010003200312.jpg",
-		"latitude":"35.438898",
-		"longitude":"133.052653", 
-		"rank":10
-	    },
-	    {
-		"title":"大根島の廃船",
-		"info":"現在は、撤去されました。一部残っている物もあります。",
-		"image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/20100904193423IMGP6792.jpg?d=a0",
-		"latitude":"35.493503",
-		"longitude":"133.161021", 
-		"rank":11
-	    },
-	    {
-		"title":"黄泉比良坂（よもつひらさか）",
-		"info":"伝説では、黄泉の国への入り口があるそうです。（ミステリー	ゾーンです。）訳あって画像は、載せらせません。ガクガクブルブル。",
-		"image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/20091123230924K20D0671.jpg?d=a0",
-		"latitude":"35.427762",
-		"longitude":"133.162117", 
-		"rank":12
-	    },
-	    {
-		"title":"平田の鬼太郎",
-		"info":"松江ではありません。画像はシュールですが平田一式飾と言った協議会があるみたいです。",
-		"image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/DSC01164_R.jpg?d=a0",
-		"latitude":"35.434967",
-		"longitude":"132.822258", 
-		"rank":13
-	    }
-	];
+    {
+      "title":"松江城",
+      "info":"城下町松江のシンボルとして親しまれている松江城です。",
+      "image":"http://www.kankou-matsue.jp/kankou/kankoushisetu/matsuejyou.data/matsuejyo.jpg",
+      "latitude":"35.475067",
+      "longitude":"133.050724",
+      "rank":1
+    },
+    {
+      "title":"堀川遊覧船",
+      "info":"松江城を取り囲む堀川を観光できる遊覧船です。冬はこたつ船になります。",
+      "image":"http://www.kankou-matsue.jp/kankou/norimono/horikawa-meguri.data/horikawa-meguri__001.jpg",
+      "latitude":"35.478266",
+      "longitude":"133.046035",
+      "rank":2
+    },
+    {
+      "title":"松江のゼロ磁場",
+      "info":"N極とS極の磁気がお互いに打ち消しあった場所です。パワースポットです。日本に数カ所しかありません！！",
+      "image":"http://www.hotel-nagata.co.jp/wp/wp-content/uploads/2010/11/rie-001.jpg",
+      "latitude":"35.469847",
+      "longitude":"133.037351",
+      "rank":3
+    },
+    {
+      "title":"マクドナルド　松江店",
+      "info":"ハンバーガー屋さんです。松江にもあります。ちなみに安来店は閉店しました。",
+      "image":"http://image1-3.tabelog.k-img.com/restaurant/images/Rvw/35763/640x640_rect_35763301.jpg",
+      "latitude":"35.473171",
+      "longitude":"133.065053",
+      "rank":4
+    },
+    {
+      "title":"ローソン　上乃木店",
+      "info":"松江でも超有名なお店です。有名な理由はご想像にお任せします。どなたかの身内のお店です。宜しくお願いします。",
+      "image":"http://prtimes.jp/i/2380/6/resize/14407584f6b305257d7977db7a4909ef.jpg",
+      "latitude":"35.444381",
+      "longitude":"133.058336",
+      "rank":5
+    },
+    {
+      "title":"株式会社　システムリンク",
+      "info":"なんでもできる会社です。（一部、ご期待に添えない場合があります。）",
+      "image":"http://livedoor.blogimg.jp/g2009h/imgs/9/f/9f26b0e8.jpg",
+      "latitude":"35.444720",
+      "longitude":"133.058147",
+      "rank":6
+    },
+    {
+      "title":"植田正治写真美術館",
+      "info":"松江ではありませんが福山雅治氏　師匠（写真家）の美術館です",
+      "image":"http://3.bp.blogspot.com/_JHKqfsEPLyg/TIHYKcESi4I/AAAAAAAAAV8/1e8D2DV0toc/s1600/R0019281.JPG",
+      "latitude":"35.389886",
+      "longitude":"133.435751",
+      "rank":7
+    },
+    {
+      "title":"べたぶみ坂",
+      "info":"途中まで松江の江島大橋です。（途中から境港市）テレビ　CMで有名になりました。",
+      "image":"http://blog.zige.jp/resources/member/001/647/1349767/large/zpRt6OYS.jpg",
+      "latitude":"35.519092",
+      "longitude":"133.199813",
+      "rank":8
+    },
+    {
+      "title":"スターバックス　シャミネ松江店",
+      "info":"ニュースで話題になりました。現在は、落ち着いております。",
+      "image":"http://kentasaka.hungry.jp/star/wp-content/uploads/2015/04/14294290458060.jpg",
+      "latitude":"35.464066",
+      "longitude":"133.064243",
+      "rank":9
+    },
+    {
+      "title":"片側二車線道路",
+      "info":"松江にもあります。片側二車線道路！！",
+      "image":"http://www.cgr.mlit.go.jp/matsukoku/kanri_cctv/cam_image/08010003200312.jpg",
+      "latitude":"35.438898",
+      "longitude":"133.052653",
+      "rank":10
+    },
+    {
+      "title":"大根島の廃船",
+      "info":"現在は、撤去されました。一部残っている物もあります。",
+      "image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/20100904193423IMGP6792.jpg?d=a0",
+      "latitude":"35.493503",
+      "longitude":"133.161021",
+      "rank":11
+    },
+    {
+      "title":"黄泉比良坂（よもつひらさか）",
+      "info":"伝説では、黄泉の国への入り口があるそうです。（ミステリー	ゾーンです。）訳あって画像は、載せらせません。ガクガクブルブル。",
+      "image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/20091123230924K20D0671.jpg?d=a0",
+      "latitude":"35.427762",
+      "longitude":"133.162117",
+      "rank":12
+    },
+    {
+      "title":"平田の鬼太郎",
+      "info":"松江ではありません。画像はシュールですが平田一式飾と言った協議会があるみたいです。",
+      "image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/DSC01164_R.jpg?d=a0",
+      "latitude":"35.434967",
+      "longitude":"132.822258",
+      "rank":13
+    },
+    {
+      "title":"松江大橋",
+      "info":"白砂青松の庭園と宍道湖、松江大橋の眺めだそうです。（皆美館）",
+      "image":"http://3.bp.blogspot.com/_sAgkZSGlx1A/TAEDsBzjqZI/AAAAAAAAESw/TrJ1jwhP-M8/s1600/CIMG8426.JPG",
+      "latitude":"35.468762",
+      "longitude":"133.054116",
+      "rank":14
+    },
+    {
+      "title":"ぼてぼて茶",
+      "info":"へるんの小径（へるんのこみち）　松江市にある甘味処です。",
+      "images": [
+        "https://lh3.googleusercontent.com/-uP9UBDMyIsM/UU1ERsL7uKI/AAAAAAAAyyU/gLIL-ST9VUw/w1600-h1200/IMG_20130323_144515.jpg",
+        "http://livedoor.blogimg.jp/simauma_in_canada/imgs/6/b/6b1092bb.jpg"
+      ],
+      "latitude":"35.477303",
+      "longitude":"133.049121",
+      "rank":15
+    }
+  ];
 	datas.sort(function(val1,val2){
 	    var val1 = val1.rank;
 	    var val2 = val2.rank;
@@ -280,10 +306,19 @@ $(document).ready(function(){
 	});
 });
 
-function poi(test){ 
+function poi(test){
   $("#title").text(test.title);
   $("#info").text(test.info);
-  $("#image").attr("src", test.image);
+  $("#images img").remove();
+  var image_template = _.template($("#image_template").html());
+  if (typeof test.images !== "undefined") {
+    _.each(test.images, function (url) {
+      $("#images").append(image_template({url: url}));
+    });
+  }
+  if (typeof test.image !== "undefined") {
+    $("#images").append(image_template({url: test.image}));
+  }
   var centerPosition = new google.maps.LatLng(test.latitude, test.longitude);
   var option = {
         zoom : 15,
