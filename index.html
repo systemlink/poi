@@ -102,11 +102,7 @@
     <div class="row">
 	<div class="col-lg-4">
 	  <div class="bs-component">
-	  <div id="touch" data-memory=''></div>
-	  <div id="event" data-memory=''></div>
-	  <div id="leave" data-memory=''></div>
-
-		<div class="panel panel-default">
+		<div class="panel panel-default" id="view">
 		    <div class="panel-heading">
 			<h1 id="title"></h1>
 			<ul class="pager">
@@ -115,7 +111,7 @@
 			    </li>
 			</ul>
 		    </div>
-		    <div class="panel-body" id="view">
+		    <div class="panel-body" >
           <div id="images"></div>
       <script id="image_template" type="text/template">
 			<img id="image"
@@ -129,9 +125,9 @@
 			<div id="info"></div>
 		    </div>
 		    <div class="panel-footer">
-			<div id="mapField" style="width: 300px; height:300px;"></div>
 		    </div>
 		</div>
+      <div id="mapField" style="width: 300px; height:300px;"></div>
 	    </div>
 	</div>
     </div>
@@ -154,6 +150,9 @@
 </script>
 
 <script>
+var start_pox_x;
+var end_pox_x;
+
 $(document).ready(function(){
     /*
     $.getJSON("/poi/0", function(data){
@@ -356,7 +355,6 @@ $(document).ready(function(){
 	 function TouchStart( event ) {
 		var pos = Position(event);
 		start_pox_x = pos.x
-		$('#event').html("タッチ開始");
 	 }
 
 	/**
@@ -364,21 +362,17 @@ $(document).ready(function(){
 	 * タップした位置からプラスかマイナスかで左右移動を判断
 	 */
 	function TouchMove( event ) {
-		$('#event').html("タッチ中");
+    var pos = Position(event);
+    end_pox_x = pos.x;
 	}
 
 	/*
 	* 指を離す
 	*/
 	function TouchLeave( event ) {
-		$('#event').html("タッチ終了");
-
-		var pos = Position(event);
-		if( pos.x >= start_pox_x + 50 ){
+		if( start_pox_x + 50 <= end_pox_x ){
 			$("#next").click();
 		}
-
-		$("#leave").html('移動距離 開始x='+start_pox_x+' , 終了x='+pos.x);
 	}
 	/*
 	* 現在位置を得る
@@ -392,8 +386,6 @@ $(document).ready(function(){
 		return pos;
 	}
 });
-
-var start_pox_x;
 
 function poi(test){
   $("#title").text(test.title);
