@@ -181,7 +181,9 @@ $(document).ready(function(){
 	// });
 	var index = 0;
   poi(datas[index]);
+  createjs.Sound.registerSound("audio/next.ogg", "next");
 	$("#next").click(function(){
+		createjs.Sound.play("next");
     index++;
     $("#panel-footer").show();
     if (index === datas.length) {
