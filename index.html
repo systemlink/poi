@@ -88,7 +88,7 @@
   </div>
 </header -->
 
-<div class="container">
+<div class="container" id="container">
 
   <!-- Containers
   ================================================== -->
@@ -303,6 +303,19 @@ function poi(test){
   //マーカー追加
   var marker = new google.maps.Marker(markerOption);
 };
+
+$('#container').bind({
+/* フリック開始時 */
+'touchstart': function(e) {
+},
+/* フリック中 */
+'touchmove': function(e) {
+},
+/* フリック終了 */
+'touchend': function(e) {
+	$("#next").click()
+}
+});
 </script>
 
 </body>
