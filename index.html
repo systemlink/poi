@@ -1,25 +1,303 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container" >
-      <p>コンテナの中身</p>
+  <title>Umi</title>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <style type="text/css">
+  body { padding-top: 20px; }
+  @media ( min-width: 768px ) {
+    #banner {
+      min-height: 300px;
+      border-bottom: none;
+    }
+    .bs-docs-section {
+      margin-top: 8em;
+    }
+    .bs-component {
+      position: relative;
+    }
+    .bs-component .modal {
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
+      bottom: auto;
+      z-index: 1;
+      display: block;
+    }
+    .bs-component .modal-dialog {
+      width: 90%;
+    }
+    .bs-component .popover {
+      position: relative;
+      display: inline-block;
+      width: 220px;
+      margin: 20px;
+    }
+    .nav-tabs {
+      margin-bottom: 15px;
+    }
+    .progress {
+      margin-bottom: 10px;
+    }
+  }
+  #mapField {
+    width: 350px;
+    height: 350px;
+  }
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+
+<!-- header>
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="https://nkmr6194.github.io/Umi/" class="navbar-brand">Umi</a>
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          <li><a href="https://nkmr6194.github.io/Umi/">Top</a></li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="./bootstrap-ja.html">Japanese Page</a></li>
+              <li><a href="./bootstrap.html">English Page</a></li>
+            </ul>
+          </li>
+          <li><a href="https://github.com/NKMR6194/Umi/releases">Download</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
+</header -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-  </body>
+<div class="container">
+
+  <!-- Containers
+  ================================================== -->
+  <div class="bs-docs-section">
+
+    <!-- div class="row">
+      <div class="col-lg-12">
+        <h2>Panels</h2>
+      </div>
+    </div -->
+    <div class="row">
+	<div class="col-lg-4">
+	    <div class="bs-component">
+
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+			<h1 id="title"></h1>
+			<ul class="pager">
+			    <li class="next">
+				<a href="#" id="next">Next</a>
+			    </li>
+			</ul>
+		    </div>
+		    <div class="panel-body">
+			<img id="image" 
+			    class="img-rounded pull-left img-responsive" 
+			    style='padding:0;margin:0 15px 15px 0;' 
+			    alt="Cinque Terre" 
+			    width="300px" 
+			    height="300px"/>
+			<div id="info"></div>
+		    </div>
+		    <div class="panel-footer">
+			<div id="mapField" style="width: 300px; height:300px;"></div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-2.1.4.min.js"></script>
+<!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script>
+$(document).ready(function(){
+    /*
+    $.getJSON("/poi/0", function(data){
+	datas = data;
+	/*
+
+
+	*/
+	datas = [
+	    {
+		"title":"松江城",
+		"info":"城下町松江のシンボルとして親しまれている松江城です。",
+		"image":"http://www.kankou-matsue.jp/kankou/kankoushisetu/matsuejyou.data/matsuejyo.jpg",
+		"latitude":"35.475067",
+		    "longitude":"133.050724",
+		    "rank":1
+	    },
+	    {
+		"title":"堀川遊覧船",
+		"info":"松江城を取り囲む堀川を観光できる遊覧船です。冬はこたつ船になります。",
+		"image":"http://www.kankou-matsue.jp/kankou/norimono/horikawa-meguri.data/horikawa-meguri__001.jpg",
+		"latitude":"35.478266",
+		"longitude":"133.046035", 
+		"rank":2
+	    },
+	    {
+		"title":"松江のゼロ磁場",
+		"info":"N極とS極の磁気がお互いに打ち消しあった場所です。パワースポットです。日本に数カ所しかありません！！",
+		"image":"http://www.hotel-nagata.co.jp/wp/wp-content/uploads/2010/11/rie-001.jpg",
+		"latitude":"35.469847",
+		"longitude":"133.037351", 
+		"rank":3
+	    },
+	    {
+		"title":"マクドナルド　松江店",
+		"info":"ハンバーガー屋さんです。松江にもあります。ちなみに安来店は閉店しました。",
+		"image":"http://image1-3.tabelog.k-img.com/restaurant/images/Rvw/35763/640x640_rect_35763301.jpg",
+		"latitude":"35.473171",
+		"longitude":"133.065053", 
+		"rank":4
+	    },
+	    {
+		"title":"ローソン　浜乃木店",
+		"info":"松江でも超有名なお店です。有名な理由はご想像にお任せします。",
+		"image":"http://prtimes.jp/i/2380/6/resize/14407584f6b305257d7977db7a4909ef.jpg",
+		"latitude":"35.444381",
+		"longitude":"133.058336", 
+		"rank":5
+	    },
+	    {
+		"title":"株式会社　システムリンク",
+		"info":"なんでもできる会社です。（一部、ご期待に添えない場合があります。）",
+		"image":"http://livedoor.blogimg.jp/g2009h/imgs/9/f/9f26b0e8.jpg",
+		"latitude":"35.444720",
+		"longitude":"133.058147", 
+		"rank":6
+	    },
+	    {
+		"title":"植田正治写真美術館",
+		"info":"松江ではありませんが福山雅治氏　師匠（写真家）の美術館です",
+		"image":"http://3.bp.blogspot.com/_JHKqfsEPLyg/TIHYKcESi4I/AAAAAAAAAV8/1e8D2DV0toc/s1600/R0019281.JPG",
+		"latitude":"35.389886",
+		"longitude":"133.435751", 
+		"rank":7
+	    },
+	    {
+		"title":"べたぶみ坂",
+		"info":"一部、松江の江島大橋です。（一部は、境港市）テレビ　CMで有名になりました。",
+		"image":"http://blog.zige.jp/resources/member/001/647/1349767/large/zpRt6OYS.jpg",
+		"latitude":"35.519092",
+		"longitude":"133.199813", 
+		"rank":8
+	    },
+	    {
+		"title":"スターバックス　シャミネ松江店",
+		"info":"ニュースで話題になりました。現在は、落ち着いております。",
+		"image":"http://kentasaka.hungry.jp/star/wp-content/uploads/2015/04/14294290458060.jpg",
+		"latitude":"35.464066",
+		"longitude":"133.064243", 
+		"rank":9
+	    },
+	    {
+		"title":"片側二車線道路",
+		"info":"松江にもあります。片側二車線道路！！",
+		"image":"http://www.cgr.mlit.go.jp/matsukoku/kanri_cctv/cam_image/08010003200312.jpg",
+		"latitude":"35.438898",
+		"longitude":"133.052653", 
+		"rank":10
+	    },
+	    {
+		"title":"大根島の廃船",
+		"info":"現在は、撤去されました。一部残っている物もあります。",
+		"image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/20100904193423IMGP6792.jpg?d=a0",
+		"latitude":"35.493503",
+		"longitude":"133.161021", 
+		"rank":11
+	    },
+	    {
+		"title":"黄泉比良坂（よもつひらさか）",
+		"info":"伝説では、黄泉の国への入り口があるそうです。（ミステリー	ゾーンです。）訳あって画像は、載せらせません。ガクガクブルブル。",
+		"image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/20091123230924K20D0671.jpg?d=a0",
+		"latitude":"35.427762",
+		"longitude":"133.162117", 
+		"rank":12
+	    },
+	    {
+		"title":"平田の鬼太郎",
+		"info":"松江ではありません。画像はシュールですが平田一式飾と言った協議会があるみたいです。",
+		"image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/DSC01164_R.jpg?d=a0",
+		"latitude":"35.434967",
+		"longitude":"132.822258", 
+		"rank":13
+	    }
+	];
+	datas.sort(function(val1,val2){
+	    var val1 = val1.rank;
+	    var val2 = val2.rank;
+	    if( val1 < val2 ) {
+		return 1;
+	    } else {
+		return -1;
+	    }
+	});
+	var index = 0;
+	poi(datas[index]);
+	$("#next").click(function(){
+	    index++;
+	    if (index < datas.length) {
+		poi(datas[index]);
+	    }else{
+		alert("もう行くとこなんてねえよ");
+	    }
+	});
+});
+
+function poi(test){ 
+  $("#title").text(test.title);
+  $("#info").text(test.info);
+  $("#image").attr("src", test.image);
+  var centerPosition = new google.maps.LatLng(test.latitude, test.longitude);
+  var option = {
+        zoom : 15,
+        center : centerPosition,
+        mapTypeId : google.maps.MapTypeId.ROADMAP
+    };
+  //地図本体描画
+  var googlemap = new google.maps.Map(document.getElementById("mapField"), option);
+  //  $("div[class~='panel-heading']").val(test.title);
+  //マーカーオプションの指定
+  var markerOption = {
+      position : centerPosition, //マーカーを表示させる座標
+      map : googlemap,  //マーカーを表示させる地図
+      title : test.title
+  };
+
+  //マーカー追加
+  var marker = new google.maps.Marker(markerOption);
+};
+</script>
+
+</body>
 </html>
