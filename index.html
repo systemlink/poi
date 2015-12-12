@@ -105,7 +105,7 @@
 	  <div id="touch" data-memory=''></div>
 	  <div id="event" data-memory=''></div>
 	  <div id="leave" data-memory=''></div>
-	  
+
 		<div class="panel panel-default">
 		    <div class="panel-heading">
 			<h1 id="title"></h1>
@@ -205,7 +205,7 @@ $(document).ready(function(){
     },
     {
       "title":"株式会社　システムリンク",
-      "info":"なんでもできる会社です。（一部、ご期待に添えない場合があります。）",
+      "info":"なんでもできる会社です。（一部、ご期待に添えない場合があります。）画像は、国会議事堂です。会社とは関係ありません。",
       "image":"http://livedoor.blogimg.jp/g2009h/imgs/9/f/9f26b0e8.jpg",
       "latitude":"35.444720",
       "longitude":"133.058147",
@@ -237,7 +237,7 @@ $(document).ready(function(){
     },
     {
       "title":"片側二車線道路",
-      "info":"松江にもあります。片側二車線道路！！",
+      "info":"田舎でも片側二車線道路は「あります。！！」",
       "image":"http://www.cgr.mlit.go.jp/matsukoku/kanri_cctv/cam_image/08010003200312.jpg",
       "latitude":"35.438898",
       "longitude":"133.052653",
@@ -261,7 +261,7 @@ $(document).ready(function(){
     },
     {
       "title":"平田の鬼太郎",
-      "info":"松江ではありません。画像はシュールですが平田一式飾と言った協議会があるみたいです。",
+      "info":"松江ではありません。画像はシュールですが平田一式飾と言った競技会があるみたいです。",
       "image":"http://abbkbb.up.n.seesaa.net/abbkbb/bw_uploads/DSC01164_R.jpg?d=a0",
       "latitude":"35.434967",
       "longitude":"132.822258",
@@ -285,17 +285,54 @@ $(document).ready(function(){
       "latitude":"35.477303",
       "longitude":"133.049121",
       "rank":15
-    }
-  ];
-	datas.sort(function(val1,val2){
-	    var val1 = val1.rank;
-	    var val2 = val2.rank;
-	    if( val1 < val2 ) {
-		return 1;
-	    } else {
-		return -1;
-	    }
-	});
+    },
+    {
+      "title":"松江の夕日",
+      "info":"綺麗でしょ。おすすめです。",
+      "images": [
+        "http://find-travel.cdn-dena.com/picture/articlebody/48991",
+        "http://www.shimane19.net/shichoson/uploads/matsue_3.jpg",
+        "http://find-travel.cdn-dena.com/picture/articlebody/45242",
+        "http://find-travel.cdn-dena.com/picture/articlebody/45262"
+      ],
+      "latitude":"35.460276",
+      "longitude":"133.052238",
+      "rank":16
+    },
+    {
+      "title":"いずもまがたまの里 伝承館",
+      "info":"きれいな宝石などが購入できます。おみやげにいかがですか。「宝探し体験館」でお宝が見つかるかも。",
+      "image":"http://blog-imgs-32.fc2.com/r/o/b/robamama/IMGP8682.jpg",
+      "latitude":"35.431988",
+      "longitude":"133.005336",
+      "rank":17
+    },
+    {
+      "title":"松江フォーゲルパーク",
+      "info":"花と鳥の楽園。お子様にも大人も楽しめるかも。",
+      "image":"http://find-travel.cdn-dena.com/picture/articlebody/45454",
+      "latitude":"35.474918",
+      "longitude":"132.943953",
+      "rank":18
+    },
+    {
+      "title":"加賀の潜戸",
+      "info":"洞門が有名で「加賀の潜戸」と呼ばれています。マリンプラザしまねから潜戸観光遊覧船で周遊できます。",
+      "image":"http://2.bp.blogspot.com/_d-mlcm-zkzE/TKZ5IEzNgsI/AAAAAAAABnA/Dn8SK6XMowE/s1600/IMG_3109SS.jpg",
+      "latitude":"35.563987",
+      "longitude":"133.054856",
+      "rank":19
+    }];
+  datas = shuffle(datas);
+	// datas.sort(function(val1,val2){
+	//     var val1 = val1.rank;
+	//     var val2 = val2.rank;
+	//     if( val1 < val2 ) {
+	// 	return 1;
+	//     } else {
+	// 	return -1;
+	//     }
+	// });
 	var index = 0;
 	poi(datas[index]);
 	$("#next").click(function(){
@@ -313,7 +350,7 @@ $(document).ready(function(){
 	$("#container").bind("touchstart", TouchStart);
 	$("#container").bind("touchmove" , TouchMove);
 	$("#container").bind("touchend" , TouchLeave);
- 
+
 	/**
 	 *  タップした位置をメモリーする
 	 */
@@ -321,14 +358,14 @@ $(document).ready(function(){
 		var pos = Position(event);
 		$("#touch").data("memory",pos.x);
 	 }
- 
+
 	/**
 	 * スワイプ
 	 * タップした位置からプラスかマイナスかで左右移動を判断
 	 */
 	function TouchMove( event ) {
 	}
-	 
+
 	/*
 	* 指を離す
 	*/
@@ -339,7 +376,7 @@ $(document).ready(function(){
 			$("#next").click();
 		}
 	}
-	 
+
 	/*
 	* 現在位置を得る
 	*/
@@ -385,6 +422,19 @@ function poi(test){
   //マーカー追加
   var marker = new google.maps.Marker(markerOption);
 };
+
+function shuffle(array) {
+  var n = array.length, t, i;
+
+  while (n) {
+    i = Math.floor(Math.random() * n--);
+    t = array[n];
+    array[n] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
 </script>
 
 </body>
